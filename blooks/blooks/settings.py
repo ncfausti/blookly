@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'stories',
     'rest_framework',
+    'social.apps.django_app.default'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -69,6 +70,36 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.contrib.auth.context_processors.auth',
+   'django.core.context_processors.debug',
+   'django.core.context_processors.i18n',
+   'django.core.context_processors.media',
+   'django.core.context_processors.static',
+   'django.core.context_processors.tz',
+   'django.contrib.messages.context_processors.messages',
+   'social.apps.django_app.context_processors.backends',
+   'social.apps.django_app.context_processors.login_redirect',
+)
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.google.GoogleOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+# FB App ID 1487757494858921
+SOCIAL_AUTH_FACEBOOK_KEY = "1487757494858921"
+SOCIAL_AUTH_FACEBOOK_SECRET = "4043b9022a15a3de8cda16a88f0132d6"
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "389277339234-rblbrcl6hrqcnu5p19he03hpjrgtinas.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "v9p0kAYcGACz3w1iqY453xYO"
+
+
+
+LOGIN_REDIRECT_URL = "/"
 
 WSGI_APPLICATION = 'blooks.wsgi.application'
 

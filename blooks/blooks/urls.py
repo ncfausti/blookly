@@ -40,7 +40,7 @@ router.register(r'users', UserViewSet)
 
 urlpatterns = [
 	url(r'^', include(router.urls)),
-   	url(r'^home/', 'blooks.views.home', name='home'),
+   	url(r'^home/', 'stories.views.home', name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url('', include('social.apps.django_app.urls', namespace='social')),
