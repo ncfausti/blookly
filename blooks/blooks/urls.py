@@ -39,10 +39,10 @@ router.register(r'users', UserViewSet)
 # Additionally, we include login URLs for the browsable API.
 
 urlpatterns = [
-	url(r'^', include(router.urls)),
-   	url(r'^home/', 'stories.views.home', name='home'),
+	url(r'^api-auth/', include(router.urls)),
+   	url(r'^$', 'stories.views.home', name='home'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url('', include('social.apps.django_app.urls', namespace='social')),
     url('', include('django.contrib.auth.urls', namespace='auth')),
 ]
