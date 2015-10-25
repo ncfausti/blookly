@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block main %}
- <div>
- <h1>Third-party authentication demo</h1>
-
+ <div id="container">
+ <div id="header">
+ <h1>Blookly Home</h1>
  <p>
    <ul>
    {% if user and not user.is_anonymous %}
@@ -27,5 +27,17 @@
    {% endif %}
    </ul>
  </p>
+ </div>
+
+<div id="main-content">
+<p>
+<ul>
+<li>profile</li>
+<li>my stories</li>
+<li>feedback</li>
+</ul>
+</p>
+</div>
+
  </div>
 {% endblock %}
