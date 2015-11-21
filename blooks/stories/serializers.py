@@ -1,4 +1,4 @@
-from rest_framework import serializers, viewsets
+from rest_framework import serializers, viewsets, permissions
 from django.contrib.auth.models import User
 from stories.models import Story
 from django.contrib import admin
@@ -16,8 +16,6 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 class StorySerializer(serializers.ModelSerializer):
-	author = UserSerializer(read_only=True, required=False)
-
 	class Meta:
 		model = Story
 		fields = ('id', 'title', 'author','pub_date', 'content', 'description')
@@ -26,3 +24,11 @@ class StorySerializer(serializers.ModelSerializer):
 class StoryViewSet(viewsets.ModelViewSet):
     queryset = Story.objects.all()
     serializer_class = StorySerializer
+
+
+# Make sure object user has update/delete permissions
+class IsAuthorOrReadOnly(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj.user == request.user
